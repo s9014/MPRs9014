@@ -39,7 +39,7 @@
 							</descriptorRefs>
 							<archive>
 								<manifest>
-									<mainClass>com.mpr.Main</mainClass>
+									<mainClass>com.mpr.program.Main</mainClass>
 								</manifest>
 							</archive>
 						</configuration>
