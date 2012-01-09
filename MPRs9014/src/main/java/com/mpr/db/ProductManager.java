@@ -18,6 +18,8 @@ public class ProductManager {
 	private PreparedStatement getProductByNameStmt;
 	private PreparedStatement getProductsByPriceStmt;
 	private PreparedStatement setProductPriceStmt;
+	private PreparedStatement deleteProductStmt;
+	
 
 	public ProductManager(Connection connection) throws SQLException {
 
@@ -31,7 +33,8 @@ public class ProductManager {
 		getProductsByPriceStmt=connection.prepareStatement("SELECT * FROM product WHERE (price) = (?)");
 		
 		setProductPriceStmt=connection.prepareStatement("UPDATE product SET price=(?) WHERE (name) =(?)");
-
+		
+		deleteProductStmt=connection.prepareStatement("DELETE FROM product WHERE name = (?)");
 	}
 
 	public void addProduct(Product product) throws SQLException {
@@ -85,5 +88,11 @@ public class ProductManager {
 		setProductPriceStmt.executeUpdate();
 		
 	}
+	
+	public void deleteProduct(Product product) throws SQLException{
+		deleteProductStmt.setString(1, product.getName());
+		deleteProductStmt.executeUpdate();
+	}
+	
 
 }

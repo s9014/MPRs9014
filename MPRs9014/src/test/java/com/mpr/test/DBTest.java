@@ -2,6 +2,7 @@ package com.mpr.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -51,6 +52,9 @@ public class DBTest {
 		p6 = new Product("RAM", new BigDecimal(124.33));
 		p7 = new Product("PSU", new BigDecimal(366.63));
 		p8 = new Product("Case", new BigDecimal(178.45));
+		
+		
+		
 		
 		
 		dbm = new DBManager();
@@ -107,10 +111,6 @@ public class DBTest {
 	@Test
 	public void TestGetAllProducts() throws SQLException{
 		assertEquals(8,pm.getAllProducts().size());
-		for(Product p: pm.getAllProducts()){
-			System.out.print(p.getName()+" - ");
-			System.out.println(p.getPrice());
-		}
 	}
 	
 	@Test
@@ -122,6 +122,7 @@ public class DBTest {
 	@Test
 	public void TestGetProductsByPrice() throws SQLException{
 		BigDecimal price = new BigDecimal(222.22);
+		
 		/*round aby zgadzala sie liczba miejsc po przecinku z ta w tabeli
 		 * w przeciwnym razie assert zwroci falsz
 		 * dlatego dla 222.22 ustawiamy 5
@@ -134,6 +135,7 @@ public class DBTest {
 	@Test
 	public void TestSetPrice() throws SQLException{
 		BigDecimal price = new BigDecimal(1.20);
+		
 		/*round aby zgadzala sie liczba miejsc po przecinku z ta w tabeli
 		 * w przeciwnym razie assert zwroci falsz
 		 * dlatego dla 1.20 ustawiamy 3
@@ -144,7 +146,24 @@ public class DBTest {
 		
 	}
 	
+	@Test
+	public void TestSetProductStoreHouse() throws SQLException{
+		sm.setProductToStoreHouse(p1, sh1);
+		assertSame(sh1.getProducts().get(0).getName(),
+				sm.getAllStorehouses().get(0).getProducts().get(0).getName());
+	}
 	
+	@Test
+	public void TestDeleteStoreHouseStmt() throws SQLException{
+		sm.deleteStoreHouse(sh2);
+		assertNull(sm.getStorehouseByName(sh2.getName()));
+	}
+	
+	@Test
+	public void TestDeleteProduct() throws SQLException{
+		pm.deleteProduct(p1);
+		assertNull(pm.getProductByName(p1.getName()));
+	}
 	
 
 }
