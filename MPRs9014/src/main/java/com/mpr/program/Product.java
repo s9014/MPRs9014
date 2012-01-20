@@ -40,11 +40,6 @@ public class Product {
 		this.storeHouseId = storeHouseId;
 	}
 	
-	public static double roundDouble(double d){
-		String s = String.format("%.2f", d);
-		return Double.parseDouble(s);
-	}
-	
 	
 
 
