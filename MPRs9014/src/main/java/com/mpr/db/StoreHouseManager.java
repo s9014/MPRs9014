@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mpr.program.Product;
-import com.mpr.program.StoreHouse;
+import com.mpr.entities.Product;
+import com.mpr.entities.StoreHouse;
 
 public class StoreHouseManager {
 	
@@ -45,7 +45,7 @@ public class StoreHouseManager {
 			while(result.next()){
 				StoreHouse storeHouse = new StoreHouse(result.getString("name"));
 				storeHouse.setId(result.getInt("id"));
-				getStoreHouseProductsStmt.setInt(1, storeHouse.getId());
+				getStoreHouseProductsStmt.setLong(1, storeHouse.getId());
 				ResultSet rs= getStoreHouseProductsStmt.executeQuery();
 				while(rs.next()){
 					
@@ -65,7 +65,7 @@ public class StoreHouseManager {
 		if(result.next()){			
 			storeHouse = new StoreHouse(result.getString("name"));
 			storeHouse.setId(result.getInt("id"));
-			getStoreHouseProductsStmt.setInt(1, storeHouse.getId());
+			getStoreHouseProductsStmt.setLong(1, storeHouse.getId());
 			ResultSet rs= getStoreHouseProductsStmt.executeQuery();
 			while(rs.next()){
 				Product product = new Product(rs.getString("name"), rs.getBigDecimal("price"));
@@ -79,7 +79,7 @@ public class StoreHouseManager {
 	
 	public void setProductToStoreHouse(Product product, StoreHouse storeHouse) throws SQLException{
 		storeHouse.getProducts().add(product);
-		setProductToStoreHouseStmt.setInt(1, storeHouse.getId());
+		setProductToStoreHouseStmt.setLong(1, storeHouse.getId());
 		setProductToStoreHouseStmt.setString(2, product.getName());
 		setProductToStoreHouseStmt.executeUpdate();
 	}

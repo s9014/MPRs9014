@@ -7,6 +7,8 @@ import java.util.List;
 import com.mpr.db.DBManager;
 import com.mpr.db.ProductManager;
 import com.mpr.db.StoreHouseManager;
+import com.mpr.entities.Product;
+import com.mpr.entities.StoreHouse;
 
 public class Main {
 	

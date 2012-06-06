@@ -1,13 +1,22 @@
-package com.mpr.program;
+package com.mpr.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class StoreHouse {
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String name;
 	private List<Product> products;
+	
 	
 	public StoreHouse(String name) {
 		products = new ArrayList<Product>();
@@ -16,13 +25,19 @@ public class StoreHouse {
 		
 	}
 
-	public int getId() {
+	
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+
+
+	public void setId(long id) {
 		this.id = id;
 	}
+
+
 
 	public String getName() {
 		return name;

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mpr.program.Product;
+import com.mpr.entities.Product;
 
 public class ProductManager {
 

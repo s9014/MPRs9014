@@ -16,8 +16,8 @@ import org.junit.Test;
 import com.mpr.db.DBManager;
 import com.mpr.db.ProductManager;
 import com.mpr.db.StoreHouseManager;
-import com.mpr.program.Product;
-import com.mpr.program.StoreHouse;
+import com.mpr.entities.Product;
+import com.mpr.entities.StoreHouse;
 
 public class DBTest {
 
