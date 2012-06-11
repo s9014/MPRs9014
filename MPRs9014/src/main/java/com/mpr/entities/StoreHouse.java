@@ -18,6 +18,11 @@ public class StoreHouse {
 	private List<Product> products;
 	
 	
+	public StoreHouse() {
+	}
+
+
+
 	public StoreHouse(String name) {
 		products = new ArrayList<Product>();
 		this.name = name;
